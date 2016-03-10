@@ -28,17 +28,17 @@ $app = new Illuminate\Foundation\Application(
 
 $app->singleton(
     Illuminate\Contracts\Http\Kernel::class,
-    UnoCommerce\Http\Kernel::class
+    Shoppvel\Http\Kernel::class
 );
 
 $app->singleton(
     Illuminate\Contracts\Console\Kernel::class,
-    UnoCommerce\Console\Kernel::class
+    Shoppvel\Console\Kernel::class
 );
 
 $app->singleton(
     Illuminate\Contracts\Debug\ExceptionHandler::class,
-    UnoCommerce\Exceptions\Handler::class
+    Shoppvel\Exceptions\Handler::class
 );
 
 /*

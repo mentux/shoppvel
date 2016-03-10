@@ -1,6 +1,6 @@
 <?php
 
-namespace UnoCommerce\Http\Middleware;
+namespace Shoppvel\Http\Middleware;
 
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken as BaseVerifier;
 

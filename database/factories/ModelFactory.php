@@ -11,7 +11,7 @@
 |
 */
 
-$factory->define(UnoCommerce\User::class, function (Faker\Generator $faker) {
+$factory->define(Shoppvel\User::class, function (Faker\Generator $faker) {
     return [
         'name' => $faker->name,
         'email' => $faker->safeEmail,

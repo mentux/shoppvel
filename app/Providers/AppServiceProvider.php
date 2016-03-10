@@ -1,6 +1,6 @@
 <?php
 
-namespace UnoCommerce\Providers;
+namespace Shoppvel\Providers;
 
 use Illuminate\Support\ServiceProvider;
 

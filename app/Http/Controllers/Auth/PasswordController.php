@@ -1,8 +1,8 @@
 <?php
 
-namespace UnoCommerce\Http\Controllers\Auth;
+namespace Shoppvel\Http\Controllers\Auth;
 
-use UnoCommerce\Http\Controllers\Controller;
+use Shoppvel\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ResetsPasswords;
 
 class PasswordController extends Controller

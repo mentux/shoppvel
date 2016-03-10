@@ -1,6 +1,6 @@
 <?php
 
-namespace UnoCommerce\Events;
+namespace Shoppvel\Events;
 
 abstract class Event
 {

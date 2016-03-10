@@ -1,6 +1,6 @@
 <?php
 
-namespace UnoCommerce;
+namespace Shoppvel;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 

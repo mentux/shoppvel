@@ -30,7 +30,7 @@ return [
     ],
 
     'stripe' => [
-        'model' => UnoCommerce\User::class,
+        'model' => Shoppvel\User::class,
         'key' => env('STRIPE_KEY'),
         'secret' => env('STRIPE_SECRET'),
     ],

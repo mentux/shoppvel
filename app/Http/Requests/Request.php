@@ -1,6 +1,6 @@
 <?php
 
-namespace UnoCommerce\Http\Requests;
+namespace Shoppvel\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 

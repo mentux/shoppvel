@@ -1,10 +1,10 @@
 <?php
 
-namespace UnoCommerce\Http\Controllers;
+namespace Shoppvel\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use UnoCommerce\Http\Requests;
+use Shoppvel\Http\Requests;
 
 class FrenteLojaController extends Controller
 {

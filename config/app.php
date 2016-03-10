@@ -65,7 +65,7 @@ return [
     |
     */
 
-    'locale' => 'en',
+    'locale' => 'pt-BR',
 
     /*
     |--------------------------------------------------------------------------
@@ -108,7 +108,7 @@ return [
     |
     */
 
-    'log' => env('APP_LOG', 'single'),
+    'log' => env('APP_LOG', 'daily'),
 
     /*
     |--------------------------------------------------------------------------
@@ -151,10 +151,10 @@ return [
         /*
          * Application Service Providers...
          */
-        UnoCommerce\Providers\AppServiceProvider::class,
-        UnoCommerce\Providers\AuthServiceProvider::class,
-        UnoCommerce\Providers\EventServiceProvider::class,
-        UnoCommerce\Providers\RouteServiceProvider::class,
+        Shoppvel\Providers\AppServiceProvider::class,
+        Shoppvel\Providers\AuthServiceProvider::class,
+        Shoppvel\Providers\EventServiceProvider::class,
+        Shoppvel\Providers\RouteServiceProvider::class,
 
 		Collective\Html\HtmlServiceProvider::class,
 

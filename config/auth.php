@@ -67,7 +67,7 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => UnoCommerce\User::class,
+            'model' => Shoppvel\User::class,
         ],
 
         // 'users' => [

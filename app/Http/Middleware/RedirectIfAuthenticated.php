@@ -1,6 +1,6 @@
 <?php
 
-namespace UnoCommerce\Http\Middleware;
+namespace Shoppvel\Http\Middleware;
 
 use Closure;
 use Illuminate\Support\Facades\Auth;

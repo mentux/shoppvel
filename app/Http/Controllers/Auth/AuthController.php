@@ -1,10 +1,10 @@
 <?php
 
-namespace UnoCommerce\Http\Controllers\Auth;
+namespace Shoppvel\Http\Controllers\Auth;
 
-use UnoCommerce\User;
+use Shoppvel\User;
 use Validator;
-use UnoCommerce\Http\Controllers\Controller;
+use Shoppvel\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 

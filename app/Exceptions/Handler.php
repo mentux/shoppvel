@@ -1,6 +1,6 @@
 <?php
 
-namespace UnoCommerce\Exceptions;
+namespace Shoppvel\Exceptions;
 
 use Exception;
 use Illuminate\Validation\ValidationException;

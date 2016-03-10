@@ -1,6 +1,6 @@
 <?php
 
-namespace UnoCommerce\Providers;
+namespace Shoppvel\Providers;
 
 use Illuminate\Contracts\Events\Dispatcher as DispatcherContract;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -13,8 +13,8 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-        'UnoCommerce\Events\SomeEvent' => [
-            'UnoCommerce\Listeners\EventListener',
+        'Shoppvel\Events\SomeEvent' => [
+            'Shoppvel\Listeners\EventListener',
         ],
     ];
 

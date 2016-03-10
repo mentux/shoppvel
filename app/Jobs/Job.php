@@ -1,6 +1,6 @@
 <?php
 
-namespace UnoCommerce\Jobs;
+namespace Shoppvel\Jobs;
 
 use Illuminate\Bus\Queueable;
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace UnoCommerce\Providers;
+namespace Shoppvel\Providers;
 
 use Illuminate\Contracts\Auth\Access\Gate as GateContract;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
@@ -13,7 +13,7 @@ class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
-        'UnoCommerce\Model' => 'UnoCommerce\Policies\ModelPolicy',
+        'Shoppvel\Model' => 'Shoppvel\Policies\ModelPolicy',
     ];
 
     /**
