@@ -61,11 +61,10 @@
         <div class="col-lg-2">
           <h2>Categorias</h2>
           <ul>
-			<li>Layout</li>
-			<li>para</li>
-			<li>listar</li>
-			<li>categorias</li>
-		  </ul>
+			@foreach ($categorias as $cat)
+				<li>{{$cat->nome}}</li>
+			@endforeach
+		</ul>
         </div>
         <div class="col-lg-10">
 			<div class="col-sm-6 col-md-4">

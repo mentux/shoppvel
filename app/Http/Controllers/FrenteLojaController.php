@@ -9,6 +9,7 @@ use Shoppvel\Http\Requests;
 class FrenteLojaController extends Controller
 {
     function getIndex() {
-		return view('layouts.frente-loja');
+		$models['categorias'] = \Shoppvel\Models\Categoria::all();
+		return view('layouts.frente-loja', $models);
 	}
 }

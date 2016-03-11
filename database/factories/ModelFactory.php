@@ -19,3 +19,16 @@ $factory->define(Shoppvel\User::class, function (Faker\Generator $faker) {
         'remember_token' => str_random(10),
     ];
 });
+
+$factory->define(Shoppvel\Models\Categoria::class, function (Faker\Generator $faker) {
+	$faker->locale('pt_BR');
+	
+    return [
+        'nome' => $faker->unique()->word,
+        'categoria_id' => function () use ($faker) {			
+			$pai = Shoppvel\Models\Categoria::find($faker->optional()->numberBetween(1,20));
+            return $pai; 
+        },
+    ];
+});
+
