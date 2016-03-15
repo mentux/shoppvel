@@ -42,3 +42,15 @@ $factory->define(Shoppvel\Models\Marca::class, function (Faker\Generator $faker)
     ];
 });
 
+$factory->define(Shoppvel\Models\Produto::class, function (Faker\Generator $faker) {
+    $faker->locale('pt_BR');
+
+    return [
+        'nome' => $faker->unique()->word,
+        'categoria_id' => function () use ($faker) {
+            $pai = Shoppvel\Models\Categoria::find($faker->optional()->numberBetween(1, 20));
+            return $pai;
+        },
+    ];
+});
+
