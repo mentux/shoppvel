@@ -47,21 +47,28 @@ $factory->define(Shoppvel\Models\Marca::class, function (Faker\Generator $faker)
 $factory->define(Shoppvel\Models\Produto::class, function (Faker\Generator $faker) {
     $faker->locale('pt_BR');
 
+    $avQtde = $faker->randomNumber(3);
+    $avTotal = $faker->numberBetween(0, 5) * $avQtde;
+    
     return [
         'nome' => $faker->text(50),
-        'descricao' => $faker->paragraphs,
-        'avaliacao_qtde' => $faker->randomNumber(3),
-        'avaliacao_total' => $faker->numberBetween(0, 5),
+        'descricao' => $faker->text(2000),
+        'avaliacao_qtde' => $avQtde,
+        'avaliacao_total' => $avTotal,
         'qtde_estoque' => $faker->numberBetween(0, 50),
         'preco_venda' => $faker->randomFloat(2, 10, 5000),
         'destacado' => $faker->boolean(),
         'marca_id' => function () use ($faker) {
-            $marca = Shoppvel\Models\Marca::find($faker->optional()->numberBetween(1, 20));
-            return $marca;
+            $marca = Shoppvel\Models\Marca::all('id')->toArray();
+            $marca = array_column($marca, 'id');
+            $rel = Shoppvel\Models\Marca::find($faker->randomElement($marca));
+            return $rel == null ? null : $rel->id;
         },
         'categoria_id' => function () use ($faker) {
-            $categoria = Shoppvel\Models\Categoria::find($faker->optional()->numberBetween(1, 20));
-            return $categoria;
+            $cats = Shoppvel\Models\Categoria::all('id')->toArray();
+            $cats = array_column($cats, 'id');
+            $rel = Shoppvel\Models\Categoria::find($faker->randomElement($cats));
+            return $rel == null ? null : $rel->id;
         },
     ];
 });
