@@ -10,7 +10,7 @@ class ProdutosSeeder extends Seeder {
      * @return void
      */
     public function run() {
-        dd(factory(Shoppvel\Models\Produto::class, 2)->make());
+        factory(Shoppvel\Models\Produto::class, 600)->create();
     }
 
 }
