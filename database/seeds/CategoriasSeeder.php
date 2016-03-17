@@ -2,15 +2,17 @@
 
 use Illuminate\Database\Seeder;
 
-class CategoriasSeeder extends Seeder
-{
+class CategoriasSeeder extends Seeder {
+
     /**
      * Run the database seeds.
      *
      * @return void
      */
-    public function run()
-    {
-        factory(Shoppvel\Models\Categoria::class, 20)->create();
+    public function run() {
+        for ($index = 0; $index < 20; $index++) {
+            factory(Shoppvel\Models\Categoria::class)->create();
+        }
     }
+
 }
