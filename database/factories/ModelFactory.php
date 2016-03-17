@@ -58,6 +58,7 @@ $factory->define(Shoppvel\Models\Produto::class, function (Faker\Generator $fake
         'qtde_estoque' => $faker->numberBetween(0, 50),
         'preco_venda' => $faker->randomFloat(2, 10, 5000),
         'destacado' => $faker->boolean(),
+        'imagem_nome' => $faker->word().'.jpg',
         'marca_id' => function () use ($faker) {
             $marca = Shoppvel\Models\Marca::all('id')->toArray();
             $marca = array_column($marca, 'id');
