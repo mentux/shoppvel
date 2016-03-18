@@ -50,7 +50,7 @@
 
                 <nav>
                     <ul class="nav nav-justified">
-                        <li class="active"><a href="#">Home</a></li>
+                        <li class="active"><a href="{{url('/')}}">Home</a></li>
                         <li><a href="#">Categorias</a></li>
                         <li><a href="#">Carrinho de compras</a></li>
                         <li><a href="#">Sobre o projeto</a></li>            

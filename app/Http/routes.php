@@ -16,6 +16,10 @@ Route::get('produto/{id}', [
     'as' => 'produto.detalhes',
     'uses' => 'ProdutoController@getProdutoDetalhes'
 ]);
+Route::get('imagem/arquivo/{nome}', [
+    'as' => 'imagem.file',
+    'uses' => 'ImagemController@getImagemFile'
+]);
 
 /*
 |--------------------------------------------------------------------------
