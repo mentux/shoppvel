@@ -65,7 +65,9 @@
                     <h3>Categorias</h3>
                     <ul>
                         @foreach ($categorias as $cat)
-                        <li>{{$cat->nome}}</li>
+                            @if (is_null($cat->categoria_id))
+                                <li>{{$cat->nome}}</li>
+                            @endif
                         @endforeach
                     </ul>
                 </div>
