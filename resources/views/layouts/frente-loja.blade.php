@@ -50,7 +50,7 @@
                 <nav>
                     <ul class="nav nav-justified">
                         <li class="active"><a href="{{url('/')}}">Home</a></li>
-                        <li><a href="#">Categorias</a></li>
+                        <li><a href="{{route('categoria.listar')}}">Categorias</a></li>
                         <li><a href="#">Carrinho de compras</a></li>
                         <li><a href="{{route('sobre')}}">Sobre o projeto</a></li>            
                     </ul>
@@ -66,7 +66,11 @@
                     <ul>
                         @foreach ($categorias as $cat)
                             @if (is_null($cat->categoria_id))
-                                <li>{{$cat->nome}}</li>
+                                <li>
+                                    <a href="{{route('categoria.listar', $cat->id)}}">
+                                    {{$cat->nome}}
+                                    </a>
+                                </li>
                             @endif
                         @endforeach
                     </ul>
