@@ -18,4 +18,7 @@ class FrenteLojaController extends Controller {
         return view('frente.entrada', $models);
     }
 
+    function getSobre() {
+        return view('sobre');
+    }
 }

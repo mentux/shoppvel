@@ -12,6 +12,10 @@
 */
 
 Route::get('/', 'FrenteLojaController@getIndex');
+Route::get('sobre', [
+    'as' => 'sobre',
+    'uses' => 'FrenteLojaController@getSobre'
+]);
 Route::get('produto/{id}', [
     'as' => 'produto.detalhes',
     'uses' => 'ProdutoController@getProdutoDetalhes'

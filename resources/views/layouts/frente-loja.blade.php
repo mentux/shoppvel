@@ -37,8 +37,8 @@
 
             <!-- The justified navigation menu is meant for single line per list item.
                  Multiple lines will require custom code not provided by Bootstrap. -->
-            <div class="masthead">
-                <h3 class="text-muted">Shoppvel</h3>
+            <div clas="row">
+                <h3 class="text-muted col-sm-2">Shoppvel</h3>
                 <form class="navbar-form navbar-right">
                     <div class="form-group">
                         <input placeholder="Pesquisar" class="form-control" type="text">
@@ -47,28 +47,22 @@
                         <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
                     </button>
                 </form>
-
                 <nav>
                     <ul class="nav nav-justified">
                         <li class="active"><a href="{{url('/')}}">Home</a></li>
                         <li><a href="#">Categorias</a></li>
                         <li><a href="#">Carrinho de compras</a></li>
-                        <li><a href="#">Sobre o projeto</a></li>            
+                        <li><a href="{{route('sobre')}}">Sobre o projeto</a></li>            
                     </ul>
                 </nav>
             </div>
 
-            <!-- Jumbotron -->
-            <div class="jumbotron">
-                <h1>Shoppvel</h1>
-                <p class="lead">Sistema de loja virtual.</p>
-                <!--<p><a class="btn btn-lg btn-success" href="#" role="button">Get started today</a></p>-->
-            </div>
-
+            <hr class="clearfix"/>
+            
             <!-- Example row of columns -->
             <div class="row">
                 <div class="col-lg-2">
-                    <h2>Categorias</h2>
+                    <h3>Categorias</h3>
                     <ul>
                         @foreach ($categorias as $cat)
                         <li>{{$cat->nome}}</li>
