@@ -45,4 +45,20 @@ Route::group(['middleware' => ['web']], function () {
         'as' => 'produto.buscar',
         'uses' => 'ProdutoController@getBuscar'
     ]);
+
+    Route::any('carrinho/adicionar/{id}', [
+        'as' => 'carrinho.adicionar',
+        'uses' => 'CarrinhoController@anyAdicionar'
+    ]);
+
+    Route::get('carrinho', [
+        'as' => 'carrinho.listar',
+        'uses' => 'CarrinhoController@getListar'
+    ]);
+    
+    Route::get('carrinho/esvaziar', [
+        'as' => 'carrinho.esvaziar',
+        'uses' => 'CarrinhoController@getEsvaziar'
+    ]);
+    
 });

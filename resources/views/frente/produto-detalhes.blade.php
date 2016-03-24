@@ -18,7 +18,7 @@
         @if ($produto->qtde_estoque > 0) 
             <h2 class="text-center text-info"> R$ {{number_format($produto->preco_venda, 2, ',', '.')}}</h2>
             <div class="col-sm-12 text-center">
-                <a href="#" class="btn btn-primary">Adicionar ao carrinho</a>
+                <a href="{{route('carrinho.adicionar', $produto->id)}}" class="btn btn-primary">Adicionar ao carrinho</a>
             </div>
         @else
             <h2 class="text-center text-warning"> Indisponível no momento</h2>
