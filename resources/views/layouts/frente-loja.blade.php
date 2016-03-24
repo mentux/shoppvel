@@ -41,7 +41,8 @@
                 <h3 class="text-muted col-sm-2">Shoppvel</h3>
                 {!! Form::open(array('route' => 'produto.buscar', 'class'=>'navbar-form navbar-right')) !!} 
                     <div class="form-group">
-                        <input placeholder="Pesquisar" class="form-control" type="text">
+                        {!! Form::text('termo-pesquisa', null,['placeholder'=>'Pesquisar',
+                        'class'=>'form-control']) !!}
                     </div>
                     <button type="submit" class="btn btn-primary">
                         <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
