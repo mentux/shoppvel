@@ -14,11 +14,33 @@
             <h5 class="text-muted">categoria >> {{$produto->categoria->nome}}</h5>
         </div>
     </div>
-    <div class="col-sm-3">
-        <h2 class="text-center text-info"> R$ {{number_format($produto->preco_venda, 2, ',', '.')}}</h2>
+    <div class="col-md-3 col-sm-6">
+        @if ($produto->qtde_estoque > 0) 
+            <h2 class="text-center text-info"> R$ {{number_format($produto->preco_venda, 2, ',', '.')}}</h2>
+            <div class="col-sm-12 text-center">
+                <a href="#" class="btn btn-primary">Adicionar ao carrinho</a>
+            </div>
+        @else
+            <h2 class="text-center text-warning"> Indisponível no momento</h2>
+        @endif
+        
+        <hr/>
+        <hr/>
+        
+        <div class="text-center">
+        @if ($produto->avaliacao_qtde > 0) 
+            Média de avaliações <br/>
+            <h4 class="alert alert-success">
+                {{$produto->avaliacao_total / $produto->avaliacao_qtde}}
+            </h4>
+        @else
+            <span class="text-muted">Não avaliado</span>
+        @endif
+        </div>
     </div>
-    <div class="col-sm-3">
-        <h3>Pagamento</h3>
+    <div class="col-md-3 col-sm-6">
+        <h4>Formas de pagamento</h4>
+        PAGSEGURO AQUI
     </div>
 </div>
 <div class="row">
