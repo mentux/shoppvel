@@ -39,14 +39,14 @@
                  Multiple lines will require custom code not provided by Bootstrap. -->
             <div clas="row">
                 <h3 class="text-muted col-sm-2">Shoppvel</h3>
-                <form class="navbar-form navbar-right">
+                {!! Form::open(array('route' => 'produto.buscar', 'class'=>'navbar-form navbar-right')) !!} 
                     <div class="form-group">
                         <input placeholder="Pesquisar" class="form-control" type="text">
                     </div>
                     <button type="submit" class="btn btn-primary">
                         <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
                     </button>
-                </form>
+                {!! Form::close() !!}
                 <nav>
                     <ul class="nav nav-justified">
                         <li class="active"><a href="{{url('/')}}">Home</a></li>
@@ -76,6 +76,8 @@
                     </ul>
                 </div>
                 <div class="col-lg-10">
+                    @include('layouts.messages')
+                    
                     @yield('conteudo')
                 </div>
             </div>
