@@ -1,22 +1,61 @@
 @extends('layouts.frente-loja')
 
 @section('conteudo')
-<div class='col-sm-12'>
-    <div class="page-header text-muted">
+<h2>Carrinho de compras</h2>
+<div class='row'>
+    <div class="text-muted col-sm-8">
         {{$itens->count()}} produtos no carrinho
     </div>
+    <a href="{{route('carrinho.esvaziar')}}" class="btn btn-warning col-sm-2 pull-right">
+        Esvaziar carrinho
+    </a>
 </div>
-@foreach($itens as $item)
-<div class="col-sm-6 col-md-4">
-    <div class="thumbnail">
-        <img src="{{route('imagem.file',$item->produto->imagem_nome)}}" alt="{{$item->produto->imagem_nome}}" >
-        <div class="caption">
-            <h3>{{$produto->nome}}</h3>
-            <h4 class="text-muted">{{$produto->marca->nome}}</h4>
-            <p>{{str_limit($produto->descricao,100)}}</p>
-            <p><a href="{{route('produto.detalhes', $produto->id)}}" class="btn btn-primary" role="button">Detalhes</a></p>
-        </div>
-    </div>
-</div>
-@endforeach
+<hr/>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th></th>
+            <th>Produto</th>
+            <th class="text-right">Quantidade</th>
+            <th class="text-right">Valor Unitário</th>
+            <th class="text-right">Total do item</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach($itens as $item)
+
+        <tr>
+            <td>
+                <img src="{{route('imagem.file',$item->produto->imagem_nome)}}" alt="{{$item->produto->imagem_nome}}" style="width:150px;" >
+            </td>
+            <td>
+                <a href="{{route('produto.detalhes', $item->produto->id)}}">
+                    {{$item->produto->nome}}
+                </a>
+            </td>
+            <td class="text-right">
+                {{$item->qtde}}
+            </td>
+            <td class="text-right">
+                {{number_format($item->produto->preco_venda, 2, ',', '.')}}
+            </td>
+            <td class="text-right">
+                {{number_format($item->produto->preco_venda * $item->qtde, 2, ',', '.')}}
+            </td>
+        </tr>
+        @endforeach
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="4" class="text-right">
+                Total
+            </td>
+            <td>
+                <h4 class="text-right text-danger">
+                    {{number_format($total,2,',','.')}}
+                </h4>
+            </td>
+        </tr>
+    </tfoot>
+</table>
 @stop

@@ -32,6 +32,7 @@ class CarrinhoController extends Controller {
 
     function getListar() {
         $models['itens'] = $this->carrinho->getItens();
+        $models['total'] = $this->carrinho->getTotal();
         return view('frente.carrinho-listar', $models);
     }
 

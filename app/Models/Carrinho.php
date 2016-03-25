@@ -11,10 +11,13 @@ use \Illuminate\Support\Collection;
  * uma coleção de items de Produto na sessão
  */
 class Carrinho {
+    const NOME_CARRINHO = 'carrinho';
+
     private $itens = null;
+    private $session = null;
     
     public function __construct() {
-        $this->itens = session('carrinho', new Collection());       
+        $this->itens = session()->get(self::NOME_CARRINHO, new Collection());       
     }
 
     public function getItens() {
@@ -23,7 +26,7 @@ class Carrinho {
     
     private function addItem($item) {
         $this->itens->push($item);
-        session(['carrinho' => $this->itens]);
+        session([self::NOME_CARRINHO => $this->itens]);
     }
     
     public function add($id) {
@@ -43,7 +46,15 @@ class Carrinho {
         return true;
     }
 
+    public function getTotal() {
+        $total = 0;
+        foreach ($this->itens as $item) {
+            $total += $item->qtde * $item->produto->preco_venda;
+        }
+        return $total;
+    }
+    
     public function esvaziar() {
-        session()->forget('carrinho');    
+        session()->forget(self::NOME_CARRINHO);    
     }
 }

@@ -52,7 +52,7 @@
                     <ul class="nav nav-justified">
                         <li class="active"><a href="{{url('/')}}">Home</a></li>
                         <li><a href="{{route('categoria.listar')}}">Categorias</a></li>
-                        <li><a href="#">Carrinho de compras</a></li>
+                        <li><a href="{{route('carrinho.listar')}}">Carrinho de compras</a></li>
                         <li><a href="{{route('sobre')}}">Sobre o projeto</a></li>            
                     </ul>
                 </nav>
