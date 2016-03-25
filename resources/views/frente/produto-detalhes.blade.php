@@ -18,7 +18,10 @@
         @if ($produto->qtde_estoque > 0) 
             <h2 class="text-center text-info"> R$ {{number_format($produto->preco_venda, 2, ',', '.')}}</h2>
             <div class="col-sm-12 text-center">
-                <a href="{{route('carrinho.adicionar', $produto->id)}}" class="btn btn-primary">Adicionar ao carrinho</a>
+                {{ Form::open (['route' => ['carrinho.adicionar', $produto->id]]) }}
+                    {{ Form::text('qtde', 1, ['class'=>'col-sm-3']) }}
+                    {{ Form::submit('Adicionar ao carrinho', ['class'=>'btn btn-primary btn-sm col-sm-9']) }}
+                {{ Form::close() }}
             </div>
         @else
             <h2 class="text-center text-warning"> Indisponível no momento</h2>

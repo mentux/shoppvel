@@ -29,7 +29,7 @@ class Carrinho {
         session([self::NOME_CARRINHO => $this->itens]);
     }
     
-    public function add($id) {
+    public function add($id, $qtde = 1) {
         $p = Produto::find($id);
         
         if ($p == null) {
@@ -38,7 +38,7 @@ class Carrinho {
         
         $item = new CarrinhoItem();
         $item->produto = $p;
-        $item->qtde = 1;
+        $item->qtde = $qtde;
         $item->valor = 1 * $p->preco_venda;
         
         $this->addItem($item);

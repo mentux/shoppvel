@@ -22,7 +22,7 @@ class CarrinhoController extends Controller {
                     ->withErrors('Nenhum código de produto informado para adicionar ao carrinho.');
         }        
         // se um id foi passado e a adição ao carrinho está ok
-        if ($this->carrinho->add($id)) {
+        if ($this->carrinho->add($id, $request->get('qtde'))) {
             return redirect()->route('carrinho.listar')
                     ->with('mensagens-sucesso', 'Produto adicionado ao carrinho');
         }
