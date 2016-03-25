@@ -33,6 +33,14 @@ Route::group(['middleware' => ['web']], function () {
         'as' => 'categoria.listar',
         'uses' => 'CategoriaController@getCategoria'
     ]);
+    /*
+     * ATENÇÃO para esta rota, ela deve estar antes de produto/{id}
+     * para funcionar
+     */
+    Route::any('produto/buscar', [
+        'as' => 'produto.buscar',
+        'uses' => 'ProdutoController@getBuscar'
+    ]);
     Route::get('produto/{id}', [
         'as' => 'produto.detalhes',
         'uses' => 'ProdutoController@getProdutoDetalhes'
@@ -40,10 +48,6 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('imagem/arquivo/{nome}', [
         'as' => 'imagem.file',
         'uses' => 'ImagemController@getImagemFile'
-    ]);
-    Route::any('produto/buscar', [
-        'as' => 'produto.buscar',
-        'uses' => 'ProdutoController@getBuscar'
     ]);
 
     Route::any('carrinho/adicionar/{id}', [

@@ -3,21 +3,43 @@
 @section('conteudo')
 <div class='col-sm-12'>
     <div class="page-header text-muted">
-        {{count($produtos)}} encontrado(s) com o termo de busca 
+        {{$produtos->total()}} encontrado(s) com o termo de busca 
         <span class="label label-info">{{$termo}}</span>
     </div>
 </div>
-@foreach($produtos as $produto)
-<div class="col-sm-6 col-md-4">
-    <div class="thumbnail">
-        <img src="{{route('imagem.file',$produto->imagem_nome)}}" alt="{{$produto->imagem_nome}}" >
-        <div class="caption">
-            <h3>{{$produto->nome}}</h3>
-            <h4 class="text-muted">{{$produto->marca->nome}}</h4>
-            <p>{{str_limit($produto->descricao,100)}}</p>
-            <p><a href="{{route('produto.detalhes', $produto->id)}}" class="btn btn-primary" role="button">Detalhes</a></p>
-        </div>
-    </div>
+
+<div class="col-sm-12 text-center">
+    {!! $produtos->appends(['termo-pesquisa' => $termo])->links() !!}
 </div>
-@endforeach
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th></th>
+            <th>Produto</th>
+            <th class="text-right">Valor Unitário</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach($produtos as $produto)
+
+        <tr>
+            <td>
+                <img src="{{route('imagem.file',$produto->imagem_nome)}}" alt="{{$produto->imagem_nome}}" style="width:150px;" >
+            </td>
+            <td>
+                <a href="{{route('produto.detalhes', $produto->id)}}">
+                    {{$produto->nome}}
+                </a>
+            </td>
+            <td class="text-right">
+                {{number_format($produto->preco_venda, 2, ',', '.')}}
+            </td>
+        </tr>
+        @endforeach
+    </tbody>
+</table>
+<div class="col-sm-12 text-center">
+    {!! $produtos->links() !!}
+</div>
 @stop

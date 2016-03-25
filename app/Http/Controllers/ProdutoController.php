@@ -21,8 +21,10 @@ class ProdutoController extends Controller {
         
         $termo = $request->get('termo-pesquisa');
         
-        $models['produtos'] = Produto::where('nome', 'LIKE', '%' . $termo . '%')
-                ->get();
+        $produtos = Produto::where('nome', 'LIKE', '%' . $termo . '%')
+                ->paginate(10);
+        //$produtos->setPath('buscar/'.$termo);
+        $models['produtos'] = $produtos;
         $models['termo'] = $termo;
         return view('frente.resultado-busca', $models);
     }
