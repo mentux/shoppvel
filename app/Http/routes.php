@@ -29,6 +29,14 @@ Route::group(['middleware' => ['web']], function () {
         'as' => 'sobre',
         'uses' => 'FrenteLojaController@getSobre'
     ]);
+    Route::get('checkout', [
+        'as' => 'pagseguro.redirect',
+        'uses' => 'CarrinhoController@getCheckout'
+    ]);
+    Route::get('checkout/notification', [
+        'as' => 'pagseguro.notification',
+        'uses' => 'CarrinhoController@getCheckoutNotification'
+    ]);
     Route::get('categoria/{id?}', [
         'as' => 'categoria.listar',
         'uses' => 'CategoriaController@getCategoria'

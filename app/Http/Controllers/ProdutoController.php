@@ -18,9 +18,9 @@ class ProdutoController extends Controller {
             'termo-pesquisa' => 'required|filled'
                 ]
         );
-        
+
         $termo = $request->get('termo-pesquisa');
-        
+
         $produtos = Produto::where('nome', 'LIKE', '%' . $termo . '%')
                 ->paginate(10);
         //$produtos->setPath('buscar/'.$termo);

@@ -56,6 +56,16 @@
                 </h4>
             </td>
         </tr>
+        <tr>
+            <td colspan="4" class="text-right">
+                Finalizar compra
+            </td>
+            <td>
+                <a href="{{$pagseguro['info']->getLink()}}" class="btn btn-success pull-right">
+                    Pagar com PagSeguro
+                </a>
+            </td>
+        </tr>
     </tfoot>
 </table>
 @stop
