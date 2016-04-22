@@ -80,7 +80,12 @@ class CarrinhoController extends Controller {
         ];
 
         $checkout = \PagSeguro::checkout()->createFromArray($dadosCompra);
-        $models['info'] = $checkout->send(\PagSeguro::credentials()->get());
+        try {
+            $models['info'] = $checkout->send(\PagSeguro::credentials()->get());
+        } catch (\Exception $e) {
+            $models = null;
+        }
+
         return $models;
     }
 
