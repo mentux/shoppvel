@@ -61,9 +61,11 @@
                 Finalizar compra
             </td>
             <td>
-                <a href="{{$pagseguro['info']->getLink()}}" class="btn btn-success pull-right">
-                    Pagar com PagSeguro
-                </a>
+                @if(isset($pagseguro))
+                    <a href="{{$pagseguro['info']->getLink()}}" class="btn btn-success pull-right">
+                        Pagar com PagSeguro
+                    </a>
+                @endif
             </td>
         </tr>
     </tfoot>

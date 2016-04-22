@@ -33,7 +33,9 @@ class CarrinhoController extends Controller {
     function getListar() {
         $models['itens'] = $this->carrinho->getItens();
         $models['total'] = $this->carrinho->getTotal();
-        $models['pagseguro'] = $this->checkout();
+        if ($models['itens']->count() > 0) {
+            $models['pagseguro'] = $this->checkout();
+        }
         return view('frente.carrinho-listar', $models);
     }
 
