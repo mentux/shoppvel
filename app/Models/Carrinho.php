@@ -17,7 +17,7 @@ class Carrinho {
     private $session = null;
     
     public function __construct() {
-        $this->itens = session()->get(self::NOME_CARRINHO, new Collection());       
+        $this->itens = session(self::NOME_CARRINHO, new Collection());   
     }
 
     public function getItens() {
