@@ -24,7 +24,10 @@
  */
 
 Route::group(['middleware' => ['web']], function () {
+    Route::auth();
+
     Route::get('/', 'FrenteLojaController@getIndex');
+    
     Route::get('sobre', [
         'as' => 'sobre',
         'uses' => 'FrenteLojaController@getSobre'
@@ -67,10 +70,19 @@ Route::group(['middleware' => ['web']], function () {
         'as' => 'carrinho.listar',
         'uses' => 'CarrinhoController@getListar'
     ]);
-    
+
     Route::get('carrinho/esvaziar', [
         'as' => 'carrinho.esvaziar',
         'uses' => 'CarrinhoController@getEsvaziar'
     ]);
-    
+
+    Route::group(['middleware' => ['auth']], function () {
+        Route::get('carrinho/finalizar-compra', [
+            'as' => 'carrinho.finalizar-compra',
+            'uses' => 'CarrinhoController@getFinalizarCompra'
+        ]);
+    });
 });
+
+
+//Route::get('/home', 'HomeController@index');
