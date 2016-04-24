@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Shoppvel\Http\Requests;
 use Shoppvel\Models\Carrinho;
 use Shoppvel\Models\Produto;
+use Illuminate\Support\Facades\Auth;
 
 class CarrinhoController extends Controller {
 
@@ -89,4 +90,10 @@ class CarrinhoController extends Controller {
         return $models;
     }
 
+    public function getFinalizarCompra() {
+        if ($this->carrinho->getItens()->count() == 0) {
+            return back()->withErrors('Nenhum item no carrinho para finalizar compra!');
+        }
+        
+    }
 }
