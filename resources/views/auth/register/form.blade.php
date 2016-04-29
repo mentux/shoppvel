@@ -8,57 +8,57 @@
             <form class="form-horizontal" role="form" method="POST" action="{{ url('/register') }}">
                 {!! csrf_field() !!}
 
-                <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
+                <div class="form-group{{ $errors->has('new_name') ? ' has-error' : '' }}">
                     <label class="col-md-4 control-label">Nome</label>
 
                     <div class="col-md-8">
-                        <input type="text" class="form-control" name="name" value="{{ old('name') }}">
+                        <input type="text" class="form-control" name="new_name" value="{{ old('new_name') }}">
 
                         @if ($errors->has('name'))
                         <span class="help-block">
-                            <strong>{{ $errors->first('name') }}</strong>
+                            <strong>{{ $errors->first('new_name') }}</strong>
                         </span>
                         @endif
                     </div>
                 </div>
 
-                <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+                <div class="form-group{{ $errors->has('new_email') ? ' has-error' : '' }}">
                     <label class="col-md-4 control-label">E-Mail</label>
 
                     <div class="col-md-8">
-                        <input type="email" class="form-control" name="email" value="{{ old('email') }}">
+                        <input type="email" class="form-control" name="new_email" value="{{ old('new_email') }}">
 
-                        @if ($errors->has('email'))
+                        @if ($errors->has('new_email'))
                         <span class="help-block">
-                            <strong>{{ $errors->first('email') }}</strong>
+                            <strong>{{ $errors->first('new_email') }}</strong>
                         </span>
                         @endif
                     </div>
                 </div>
 
-                <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
+                <div class="form-group{{ $errors->has('new_password') ? ' has-error' : '' }}">
                     <label class="col-md-4 control-label">Senha</label>
 
                     <div class="col-md-6">
-                        <input type="password" class="form-control" name="password">
+                        <input type="password" class="form-control" name="new_password">
 
-                        @if ($errors->has('password'))
+                        @if ($errors->has('new_password'))
                         <span class="help-block">
-                            <strong>{{ $errors->first('password') }}</strong>
+                            <strong>{{ $errors->first('new_password') }}</strong>
                         </span>
                         @endif
                     </div>
                 </div>
 
-                <div class="form-group{{ $errors->has('password_confirmation') ? ' has-error' : '' }}">
+                <div class="form-group{{ $errors->has('new_password_confirmation') ? ' has-error' : '' }}">
                     <label class="col-md-4 control-label">Confirme a senha</label>
 
                     <div class="col-md-6">
-                        <input type="password" class="form-control" name="password_confirmation">
+                        <input type="password" class="form-control" name="new_password_confirmation">
 
-                        @if ($errors->has('password_confirmation'))
+                        @if ($errors->has('new_password_confirmation'))
                         <span class="help-block">
-                            <strong>{{ $errors->first('password_confirmation') }}</strong>
+                            <strong>{{ $errors->first('new_password_confirmation') }}</strong>
                         </span>
                         @endif
                     </div>

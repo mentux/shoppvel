@@ -95,5 +95,6 @@ class CarrinhoController extends Controller {
             return back()->withErrors('Nenhum item no carrinho para finalizar compra!');
         }
         
+        return redirect('logout');
     }
 }

@@ -7,6 +7,8 @@ use Validator;
 use Shoppvel\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
@@ -50,9 +52,11 @@ class AuthController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => 'required|max:255',
-            'email' => 'required|email|max:255|unique:users',
-            'password' => 'required|confirmed|min:6',
+            'new_name' => 'required|max:255',
+            'new_email' => 'required|email|max:255|unique:users',
+            'cpf' => 'required',
+            'endereco' => 'required',
+            'new_password' => 'required|confirmed|min:6',
         ]);
     }
 
@@ -65,9 +69,36 @@ class AuthController extends Controller
     protected function create(array $data)
     {
         return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => bcrypt($data['password']),
+            'name' => $data['new_name'],
+            'email' => $data['new_email'],
+            'cpf' => $data['cpf'],
+            'endereco' => $data['endereco'],
+            'password' => bcrypt($data['new_password']),
         ]);
     }
+    
+        /**
+     * Sobrescreve o método register do trait de registo original do Laravel
+     * para gerenciar os redirecionamentos de acordo com o local que está sendo 
+     * executado o registro, assim se vem de um pedido de pagar conta redireciona
+     * para o pagamento, senão para o dashboard do cliente
+     * 
+     * @param \Shoppvel\Request $request
+     * @return type
+     */
+    public function register(Request $request) {
+        $validator = $this->validator($request->all());
+
+        if ($validator->fails()) {
+            $this->throwValidationException(
+                    $request, $validator
+            );
+        }
+
+        Auth::guard($this->getGuard())->login($this->create($request->all()));
+
+        
+        return redirect($this->redirectPath());
+    }
+
 }
