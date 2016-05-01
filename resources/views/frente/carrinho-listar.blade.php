@@ -61,13 +61,15 @@
                 Finalizar compra
             </td>
             <td>
-                <a href="{{route('carrinho.finalizar-compra')}}"
-                    class="btn btn-success pull-right">
-                       Pagar
-                </a>
-                @if(isset($pagseguro))
-                    <a href="{{$pagseguro['info']->getLink()}}" class="btn btn-success pull-right">
-                        Pagar com PagSeguro
+                @if (Auth::guest())
+                    <a href="{{route('carrinho.finalizar-compra')}}"
+                        class="btn btn-success pull-right">
+                           Faça seu login para finalizar a compra
+                    </a>
+                @else
+                    <a href="{{route('carrinho.finalizar-compra')}}"
+                        class="btn btn-success pull-right">
+                           Pagar
                     </a>
                 @endif
             </td>
