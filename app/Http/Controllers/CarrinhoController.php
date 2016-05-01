@@ -32,11 +32,7 @@ class CarrinhoController extends Controller {
     }
 
     function getListar() {
-        $models['itens'] = $this->carrinho->getItens();
-        $models['total'] = $this->carrinho->getTotal();
-        if ($models['itens']->count() > 0) {
-            $models['pagseguro'] = $this->checkout();
-        }
+        $models = $this->getCarrinhoModels();
         return view('frente.carrinho-listar', $models);
     }
 
@@ -90,11 +86,27 @@ class CarrinhoController extends Controller {
         return $models;
     }
 
+    /**
+     * Método interno do controlador carrinho para montar as classes modelo
+     * as serem passadas para as diversas visões que as necessitam
+     */
+    private function getCarrinhoModels() {
+        $models['itens'] = $this->carrinho->getItens();
+        $models['total'] = $this->carrinho->getTotal();
+        if ($models['itens']->count() > 0) {
+            $models['pagseguro'] = $this->checkout();
+        }
+        return $models;
+    }
+
     public function getFinalizarCompra() {
         if ($this->carrinho->getItens()->count() == 0) {
             return back()->withErrors('Nenhum item no carrinho para finalizar compra!');
         }
+
+        $models = $this->getCarrinhoModels();
         
-        return redirect('logout');
+        return view('frente.finalizar-compra', $models);
     }
+
 }
