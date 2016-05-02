@@ -17,8 +17,8 @@ class CreateVendasTable extends Migration {
             $table->float('data_venda');
             $table->float('valor_venda');
             $table->string('pagseguro_transaction_id');
-            $table->integer('cliente_id')->unsigned();
-            $table->foreign('cliente_id')->references('id')->on('clientes');
+            $table->integer('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users');
         });
         
         Schema::create('item_vendas', function (Blueprint $table) {

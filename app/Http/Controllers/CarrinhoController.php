@@ -42,14 +42,12 @@ class CarrinhoController extends Controller {
     }
 
     /**
-     * Função provisória de checkout, jogando todo o contole no ambiente
-     * de administração do Pagseguro
-     * Neste momento somente é chamado pelo listar carrinho para montar
-     * o link para o Pagseguro
+     * Função para montar
+     * o link de pagamento de um carrinho com  o Pagseguro
      * 
      * @return type
      */
-    function checkout() {
+    protected function checkout() {
         $itens = [];
         foreach ($this->carrinho->getItens() as $item) {
             $itens[] = [
