@@ -24,7 +24,7 @@ return [
      */
     'routes' => [
         'redirect' => [
-            'route-name' => 'pagseguro.redirect',
+            'route-name' => 'pagseguro.checkout',
         ],
         'notification' => [
             'callback' => null, // Callable callback to Notification function (notificationInfo) : void {}

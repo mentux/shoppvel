@@ -36,19 +36,6 @@ class CarrinhoController extends Controller {
         return view('frente.carrinho-listar', $models);
     }
 
-    /**
-     * Rotinas a serem implementadas na integração completa com Pagseguro
-     */
-    public function getCheckout() {
-        echo('REDIRECT <br/>');
-        dd(func_get_args());
-    }
-
-    public function getCheckoutNotification() {
-        echo('NOTIFICATON <br/>');
-        dd(func_get_args());
-    }
-
     function getEsvaziar() {
         $this->carrinho->esvaziar();
         return redirect('/')->with('mensagens-sucesso', 'Carrinho vazio');

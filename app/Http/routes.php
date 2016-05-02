@@ -23,22 +23,23 @@
   |
  */
 
+Route::post('pagseguro/notification', [
+    'as' => 'pagseguro.notification',
+    'uses' => 'PedidoController@postCheckoutNotification'
+]);
+
 Route::group(['middleware' => ['web']], function () {
     Route::auth();
 
     Route::get('/', 'FrenteLojaController@getIndex');
-    
+
     Route::get('sobre', [
         'as' => 'sobre',
         'uses' => 'FrenteLojaController@getSobre'
     ]);
-    Route::get('checkout', [
-        'as' => 'pagseguro.redirect',
-        'uses' => 'CarrinhoController@getCheckout'
-    ]);
-    Route::get('checkout/notification', [
-        'as' => 'pagseguro.notification',
-        'uses' => 'CarrinhoController@getCheckoutNotification'
+    Route::any('pagseguro/checkout', [
+        'as' => 'pagseguro.checkout',
+        'uses' => 'PedidoController@postCheckout'
     ]);
     Route::get('categoria/{id?}', [
         'as' => 'categoria.listar',
