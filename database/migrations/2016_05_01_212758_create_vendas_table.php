@@ -25,7 +25,7 @@ class CreateVendasTable extends Migration {
             $table->increments('id');
             $table->timestamps();
             $table->float('qtde');
-            $table->float('valor_venda');
+            $table->float('preco_venda');
             $table->integer('venda_id')->unsigned();
             $table->foreign('venda_id')->references('id')->on('vendas');
             $table->integer('produto_id')->unsigned();
