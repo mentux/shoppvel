@@ -21,7 +21,7 @@ class CreateVendasTable extends Migration {
             $table->foreign('user_id')->references('id')->on('users');
         });
         
-        Schema::create('item_vendas', function (Blueprint $table) {
+        Schema::create('itens_venda', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
             $table->float('qtde');
@@ -40,7 +40,7 @@ class CreateVendasTable extends Migration {
      */
     public function down() {
         Schema::drop('vendas');
-        Schema::drop('item_vendas');
+        Schema::drop('itens_venda');
     }
 
 }
