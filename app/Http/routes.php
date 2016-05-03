@@ -82,6 +82,11 @@ Route::group(['middleware' => ['web']], function () {
             'as' => 'carrinho.finalizar-compra',
             'uses' => 'CarrinhoController@getFinalizarCompra'
         ]);
+        
+        Route::get('cliente/dashboard', [
+            'as' => 'cliente.dashboard',
+            'uses' => 'ClienteController@getDashboard'
+        ]);
     });
 });
 
