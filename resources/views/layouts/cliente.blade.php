@@ -43,7 +43,7 @@
                     <h3>Cliente</h3>
                     <ul>
                         <li>
-                            <a href="#">
+                            <a href="{{route('cliente.pedidos')}}">
                                 Todos os pedidos
                             </a>
                         </li>

@@ -20,4 +20,9 @@ class ClienteController extends Controller {
         return view('frente.cliente.dashboard', $models);
     }
     
+    public function getPedidos() {
+        $models['tipoVisao'] = 'Todos';
+        $models['pedidos'] = \Auth::user()->vendas;
+        return view('frente.cliente.pedidos-listar', $models);
+    }
 }

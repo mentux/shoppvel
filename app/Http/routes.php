@@ -23,9 +23,9 @@
   |
  */
 
-Route::post('pagseguro/notification', [
+Route::post('/pagseguro/notification', [
+    'uses' => '\laravel\pagseguro\Platform\Laravel5\NotificationController@notification',
     'as' => 'pagseguro.notification',
-    'uses' => 'PedidoController@postCheckoutNotification'
 ]);
 
 Route::group(['middleware' => ['web']], function () {
@@ -37,7 +37,7 @@ Route::group(['middleware' => ['web']], function () {
         'as' => 'sobre',
         'uses' => 'FrenteLojaController@getSobre'
     ]);
-    Route::any('pagseguro/checkout', [
+    Route::get('pagseguro/checkout', [
         'as' => 'pagseguro.checkout',
         'uses' => 'PedidoController@postCheckout'
     ]);
@@ -86,6 +86,11 @@ Route::group(['middleware' => ['web']], function () {
         Route::get('cliente/dashboard', [
             'as' => 'cliente.dashboard',
             'uses' => 'ClienteController@getDashboard'
+        ]);
+        
+        Route::get('cliente/pedidos', [
+            'as' => 'cliente.pedidos',
+            'uses' => 'ClienteController@getPedidos'
         ]);
     });
 });

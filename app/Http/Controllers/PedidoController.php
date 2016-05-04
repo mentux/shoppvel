@@ -3,10 +3,12 @@
 namespace Shoppvel\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Shoppvel\Http\Requests;
 use Shoppvel\Models\Carrinho;
 use Shoppvel\Models\Produto;
 use Shoppvel\Models\Venda;
+use Shoppvel\Models\ItemVenda ;
 use Illuminate\Support\Facades\Auth;
 
 class PedidoController extends Controller {
@@ -36,18 +38,47 @@ class PedidoController extends Controller {
         
         $pedido = new Venda();
         
-        $pedido->user = Auth::user();
+        /**
+         * Trabalha com a inserção de venda e itens de venda dentro de uma
+         * transação do banco de dados, para evitar inconsistências
+         */
+        DB::beginTransaction();
+        
+        $pedido->user_id = \Auth::user()->id;
         $pedido->data_venda = \Carbon\Carbon::now();
         $pedido->valor_venda = $this->carrinho->getTotal();
         $pedido->pagseguro_transaction_id = $req->transaction_id;
+        $pedido->save();
         
+        foreach ($this->carrinho->getItens() as $idx => $itemCarrinho) {
+            $itemVenda = new ItemVenda();
+            $itemVenda->produto_id = $itemCarrinho->produto->id;
+            $itemVenda->qtde = $itemCarrinho->qtde;
+            $itemVenda->preco_venda = $itemCarrinho->produto->preco_venda;
+            
+            // TODO atualizar status de pagamento
+         
+            $pedido->itens()->save($itemVenda);
+            
+            $itemCarrinho->produto->decrement('qtde_estoque', $itemCarrinho->qtde);
+        }
         
-        
-        dd($req->all());    
+        /**
+         * Se nenhum erro ocorrer confirma o conjunto de ações no banco com 
+         * um commit, caso contrário um rollback executará por padrão
+         * se um commit não for chamado explicitamente
+         */
+        DB::commit();
+
+        $this->carrinho->esvaziar();
+
+        return redirect()
+            ->route('cliente.dashboard')
+            ->with('mensagens-sucesso', 'Pedido realizado com sucesso.');
     }
 
     public function postCheckoutNotification(Request $req) {
-        echo('NOTIFICATON <br/>');
+        echo('NOTIFICATON Ainda não implementado<br/>');
         dd($req->all());
     }
 

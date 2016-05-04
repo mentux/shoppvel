@@ -3,7 +3,6 @@
 return [
     /* DEFINE SE SERÁ UTILIZADO O AMBIENTE DE TESTES */
     'use-sandbox' => env('PAGSEG_SANDBOX', false),
-
     /*
      * Coloque abaixo as informações do seu cadastro no PagSeguro
      */
@@ -11,7 +10,6 @@ return [
         'email' => env('PAGSEG_EMAIL', null),
         'token' => env('PAGSEG_TOKEN', null),
     ],
-
     /*
      * Informe abaixo o nome / url das rotas de aplicação para notificações
      * e redirecionamento após pagamento
@@ -27,12 +25,13 @@ return [
             'route-name' => 'pagseguro.checkout',
         ],
         'notification' => [
-            'callback' => null, // Callable callback to Notification function (notificationInfo) : void {}
+            'callback' => function ($information) { // Callable
+                \Log::debug(print_r($information, 1));
+            }, // Callable callback to Notification function (notificationInfo) : void {}
             'credential' => 'default', // Callable resolve credential function (notificationCode) : Credentials {}
             'route-name' => 'pagseguro.notification', // Cria uma rota com este nome
         ],
     ],
-
     /*
      * MOEDA QUE SERÁ UTILIZADA COMO MEIO DE PAGAMENTO
      * Somente BRL é aceito no momento (Real do Brasil)
@@ -40,7 +39,6 @@ return [
     'currency' => [
         'type' => 'BRL'
     ],
-
     /**
      * Adaptador de Requisições
      */
@@ -49,11 +47,10 @@ return [
             'type' => 'curl',
             'options' => [
                 CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_0,
-                //CURLOPT_PROXY => 'http://user:pass@host:port', // PROXY OPTION
+            //CURLOPT_PROXY => 'http://user:pass@host:port', // PROXY OPTION
             ]
         ],
     ],
-
     /*
      * ATENÇÃO: Não altere as configurações abaixo
      * */
