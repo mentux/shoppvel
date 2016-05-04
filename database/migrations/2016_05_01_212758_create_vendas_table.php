@@ -17,6 +17,8 @@ class CreateVendasTable extends Migration {
             $table->float('data_venda');
             $table->float('valor_venda');
             $table->string('pagseguro_transaction_id');
+            $table->boolean('pago')->default(false);
+            $table->boolean('enviado')->default(false);
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');
         });
