@@ -45,6 +45,12 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $e)
     {
+        
+        if ($e instanceof \Illuminate\Session\TokenMismatchException) {
+            return back()->withErrors('A sessão de segurança expirou, '
+                    . 'renovamos a sessão, por favor reenvie sua solicitação');
+        }
+        
         return parent::render($request, $e);
     }
 }
