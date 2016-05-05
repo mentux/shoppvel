@@ -8,7 +8,7 @@ use Shoppvel\Http\Requests;
 use Shoppvel\Models\Carrinho;
 use Shoppvel\Models\Produto;
 use Shoppvel\Models\Venda;
-use Shoppvel\Models\ItemVenda ;
+use Shoppvel\Models\VendaItem ;
 use Illuminate\Support\Facades\Auth;
 
 class PedidoController extends Controller {
@@ -51,7 +51,7 @@ class PedidoController extends Controller {
         $pedido->save();
         
         foreach ($this->carrinho->getItens() as $idx => $itemCarrinho) {
-            $itemVenda = new ItemVenda();
+            $itemVenda = new VendaItem();
             $itemVenda->produto_id = $itemCarrinho->produto->id;
             $itemVenda->qtde = $itemCarrinho->qtde;
             $itemVenda->preco_venda = $itemCarrinho->produto->preco_venda;

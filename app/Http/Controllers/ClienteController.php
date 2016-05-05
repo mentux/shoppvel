@@ -7,7 +7,7 @@ use Shoppvel\Http\Requests;
 use Shoppvel\Models\Carrinho;
 use Shoppvel\Models\Produto;
 use Shoppvel\Models\Venda;
-use Shoppvel\Models\ItemVendause ;
+use Shoppvel\Models\VendaItem ;
 use Illuminate\Support\Facades\Auth;
 
 class ClienteController extends Controller {
@@ -20,9 +20,14 @@ class ClienteController extends Controller {
         return view('frente.cliente.dashboard', $models);
     }
     
-    public function getPedidos() {
-        $models['tipoVisao'] = 'Todos';
-        $models['pedidos'] = \Auth::user()->vendas;
-        return view('frente.cliente.pedidos-listar', $models);
+    public function getPedidos($id = null) {
+        if ($id == null) {
+            $models['tipoVisao'] = 'Todos';
+            $models['pedidos'] = \Auth::user()->vendas;
+            return view('frente.cliente.pedidos-listar', $models);
+        }
+        
+        $models['pedido'] = Venda::find($id);
+        return view('frente.cliente.pedido-detalhes', $models);
     }
 }

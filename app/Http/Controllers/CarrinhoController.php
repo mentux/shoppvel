@@ -48,7 +48,10 @@ class CarrinhoController extends Controller {
      * @return type
      */
     protected function checkout() {
+        $user = \Auth::user();
+        
         $itens = [];
+        
         foreach ($this->carrinho->getItens() as $item) {
             $itens[] = [
                 'id' => $item->produto->id,
@@ -57,9 +60,22 @@ class CarrinhoController extends Controller {
                 'amount' => $item->produto->preco_venda,
             ];
         }
+        
+        
         $dadosCompra = [
             'items' => $itens,
+            'sender' => [
+                'email' => $user->email,
+                'name'  => $user->name,
+            ]
         ];
+        
+        if ($user->cpf) {
+            $dadosCompra['sender']['documents'] = [
+                    'number' => $user->cpf,
+                    'type'  => 'cpf'
+                ];
+        }
 
         $checkout = \PagSeguro::checkout()->createFromArray($dadosCompra);
         try {

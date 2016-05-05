@@ -88,7 +88,7 @@ Route::group(['middleware' => ['web']], function () {
             'uses' => 'ClienteController@getDashboard'
         ]);
         
-        Route::get('cliente/pedidos', [
+        Route::get('cliente/pedidos/{id?}', [
             'as' => 'cliente.pedidos',
             'uses' => 'ClienteController@getPedidos'
         ]);
