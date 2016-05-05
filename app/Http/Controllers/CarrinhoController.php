@@ -48,42 +48,45 @@ class CarrinhoController extends Controller {
      * @return type
      */
     protected function checkout() {
-        $user = \Auth::user();
-        
-        $itens = [];
-        
-        foreach ($this->carrinho->getItens() as $item) {
-            $itens[] = [
-                'id' => $item->produto->id,
-                'description' => $item->produto->nome,
-                'quantity' => $item->qtde,
-                'amount' => $item->produto->preco_venda,
-            ];
-        }
-        
-        
-        $dadosCompra = [
-            'items' => $itens,
-            'sender' => [
-                'email' => $user->email,
-                'name'  => $user->name,
-            ]
-        ];
-        
-        if ($user->cpf) {
-            $dadosCompra['sender']['documents'] = [
-                    'number' => $user->cpf,
-                    'type'  => 'cpf'
+        $models = null;
+        if (\Auth::user()) {
+
+            $user = \Auth::user();
+
+            $itens = [];
+
+            foreach ($this->carrinho->getItens() as $item) {
+                $itens[] = [
+                    'id' => $item->produto->id,
+                    'description' => $item->produto->nome,
+                    'quantity' => $item->qtde,
+                    'amount' => $item->produto->preco_venda,
                 ];
-        }
+            }
 
-        $checkout = \PagSeguro::checkout()->createFromArray($dadosCompra);
-        try {
-            $models['info'] = $checkout->send(\PagSeguro::credentials()->get());
-        } catch (\Exception $e) {
-            $models = null;
-        }
 
+            $dadosCompra = [
+                'items' => $itens,
+                'sender' => [
+                    'email' => $user->email,
+                    'name' => $user->name,
+                ]
+            ];
+
+            if ($user->cpf) {
+                $dadosCompra['sender']['documents'] = [
+                    'number' => $user->cpf,
+                    'type' => 'cpf'
+                ];
+            }
+
+            $checkout = \PagSeguro::checkout()->createFromArray($dadosCompra);
+            try {
+                $models['info'] = $checkout->send(\PagSeguro::credentials()->get());
+            } catch (\Exception $e) {
+                $models = null;
+            }
+        }
         return $models;
     }
 
@@ -106,7 +109,7 @@ class CarrinhoController extends Controller {
         }
 
         $models = $this->getCarrinhoModels();
-        
+
         return view('frente.finalizar-compra', $models);
     }
 
