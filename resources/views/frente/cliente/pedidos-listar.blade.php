@@ -19,7 +19,7 @@
 
         <tr>
             <td>
-                <a href="{{route('pedido.detalhes')}}">
+                <a href="{{route('cliente.pedidos', $pedido->id)}}">
                     {{$pedido->data_venda->format('d/m/Y H:i')}}
                 </a>
             </td>

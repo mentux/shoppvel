@@ -1,16 +1,55 @@
 @extends('layouts.cliente')
 
 @section('conteudo')
-<h2>Carrinho de compras</h2>
-<div class='row'>
-    <div class="text-muted col-sm-8">
-        {{$itens->count()}} produtos no carrinho
-    </div>
-    <a href="{{route('carrinho.esvaziar')}}" class="btn btn-warning col-sm-2 pull-right">
-        Esvaziar carrinho
-    </a>
-</div>
-<hr/>
+<h2>Pedido - {{$pedido->data_venda->format('d/m/Y H:i')}} </h2>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Data</th>
+            <th class="text-right">Valor</th>
+            <th class="text-right">Método de Pagamento</th>
+            <th class="text-right">Status no Pagseguro</th>
+            <th class="text-right">Status Local</th>
+            <th class="text-right">Enviado / Finalizado</th>
+            <th class="text-right">Id no Pagseguro</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                <a href="{{route('cliente.pedidos', $pedido->id)}}">
+                    {{$pedido->data_venda->format('d/m/Y H:i')}}
+                </a>
+            </td>
+            <td>
+                {{number_format($pedido->valor_venda, 2, ',', '.')}}
+            </td>
+            <td class="text-right">
+                {{$pedido->metodo_pagamento}}
+            </td>
+            <td class="text-right">
+                {{$pedido->status_pagamento}}
+            </td>
+            <td class="text-right small">
+                {!! $pedido->pago && $pedido->enviado == FALSE 
+                    ? '<span class="text-primary">PRONTO PARA ENVIAR</span>' 
+                    : '<b class="text-warning">Aguardando atualização de status de pagamento</b>'
+                !!}
+            </td>
+            <td class="text-right small">
+                {!! $pedido->enviado 
+                    ? '<span class="text-success">ENVIADO / FINALIZADO</span>' 
+                    : '<b class="text-warning">Aguardando atualização de status de pagamento</b>'
+                !!}
+            </td>
+            <td class="text-right text-muted small">
+                {{$pedido->pagseguro_transaction_id}}
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<h3>Itens - {{$pedido->itens->count()}}</h3>
 <table class="table table-striped">
     <thead>
         <tr>
@@ -22,8 +61,7 @@
         </tr>
     </thead>
     <tbody>
-        @foreach($itens as $item)
-
+        @foreach($pedido->itens as $item)
         <tr>
             <td>
                 <img src="{{route('imagem.file',$item->produto->imagem_nome)}}" alt="{{$item->produto->imagem_nome}}" style="width:150px;" >
@@ -45,35 +83,5 @@
         </tr>
         @endforeach
     </tbody>
-    <tfoot>
-        <tr>
-            <td colspan="4" class="text-right">
-                Total
-            </td>
-            <td>
-                <h4 class="text-right text-danger">
-                    {{number_format($total,2,',','.')}}
-                </h4>
-            </td>
-        </tr>
-        <tr>
-            <td colspan="4" class="text-right">
-                Finalizar compra
-            </td>
-            <td>
-                @if (Auth::guest())
-                    <a href="{{route('carrinho.finalizar-compra')}}"
-                        class="btn btn-success pull-right">
-                           Faça seu login para finalizar a compra
-                    </a>
-                @else
-                    <a href="{{route('carrinho.finalizar-compra')}}"
-                        class="btn btn-success pull-right">
-                           Pagar
-                    </a>
-                @endif
-            </td>
-        </tr>
-    </tfoot>
 </table>
 @stop
