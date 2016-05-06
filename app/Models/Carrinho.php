@@ -27,6 +27,7 @@ class Carrinho {
     private function addItem($item) {
         $this->itens->push($item);
         session([self::NOME_CARRINHO => $this->itens]);
+        session()->save();
     }
     
     public function add($id, $qtde = 1) {
