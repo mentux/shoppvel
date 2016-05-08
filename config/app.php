@@ -139,6 +139,7 @@ return [
         Shoppvel\Providers\RouteServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
         laravel\pagseguro\Platform\Laravel5\ServiceProvider::class,
+        KennedyTedesco\Validation\ValidationServiceProvider::class,
     ],
     /*
       |--------------------------------------------------------------------------

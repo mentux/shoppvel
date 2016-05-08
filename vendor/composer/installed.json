@@ -3207,5 +3207,122 @@
             "framework",
             "laravel"
         ]
+    },
+    {
+        "name": "respect/validation",
+        "version": "1.0.7",
+        "version_normalized": "1.0.7.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/Respect/Validation.git",
+            "reference": "6597aa51149aff674faa9db1729c0c70392aa296"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/Respect/Validation/zipball/6597aa51149aff674faa9db1729c0c70392aa296",
+            "reference": "6597aa51149aff674faa9db1729c0c70392aa296",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.4"
+        },
+        "require-dev": {
+            "egulias/email-validator": "~1.2",
+            "malkusch/bav": "~1.0",
+            "mikey179/vfsstream": "^1.5",
+            "phpunit/phpunit": "~4.0",
+            "symfony/validator": "~2.6.9",
+            "zendframework/zend-validator": "~2.3"
+        },
+        "suggest": {
+            "egulias/email-validator": "Strict (RFC compliant) email validation",
+            "ext-bcmath": "Arbitrary Precision Mathematics",
+            "ext-mbstring": "Multibyte String Functions",
+            "fabpot/php-cs-fixer": "Fix PSR2 and other coding style issues",
+            "malkusch/bav": "German bank account validation",
+            "symfony/validator": "Use Symfony validator through Respect\\Validation",
+            "zendframework/zend-validator": "Use Zend Framework validator through Respect\\Validation"
+        },
+        "time": "2016-05-07 18:51:56",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "1.0-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Respect\\Validation\\": "library/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "BSD Style"
+        ],
+        "authors": [
+            {
+                "name": "Respect/Validation Contributors",
+                "homepage": "https://github.com/Respect/Validation/graphs/contributors"
+            }
+        ],
+        "description": "The most awesome validation engine ever created for PHP",
+        "homepage": "http://respect.li",
+        "keywords": [
+            "respect",
+            "validation",
+            "validator"
+        ]
+    },
+    {
+        "name": "kennedytedesco/validation",
+        "version": "3.0.0",
+        "version_normalized": "3.0.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/KennedyTedesco/Validation.git",
+            "reference": "2db50a9a016be3289e4479a9241361c2ff81d6cf"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/KennedyTedesco/Validation/zipball/2db50a9a016be3289e4479a9241361c2ff81d6cf",
+            "reference": "2db50a9a016be3289e4479a9241361c2ff81d6cf",
+            "shasum": ""
+        },
+        "require": {
+            "illuminate/support": "5.2.*",
+            "php": ">=5.5.9",
+            "respect/validation": "1.0.*"
+        },
+        "require-dev": {
+            "laravel/framework": "5.2.*",
+            "orchestra/testbench": "3.2.*",
+            "phpunit/phpunit": "~5.0"
+        },
+        "time": "2015-12-22 14:36:02",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "KennedyTedesco\\Validation\\": "src/Validation"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Kennedy Tedesco",
+                "email": "kennedyt.tw@gmail.com"
+            }
+        ],
+        "description": "The power of 'Respect Validation' on Laravel.",
+        "keywords": [
+            "laravel",
+            "respect",
+            "rules",
+            "validation"
+        ]
     }
 ]
