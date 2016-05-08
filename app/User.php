@@ -28,4 +28,15 @@ class User extends Authenticatable {
         return $this->hasMany(Models\Venda::class);
     }
     
+    public function vendasNaoPagas() {
+        return $this->vendas()->where('pago', false);
+    }
+    
+    public function vendasPagas() {
+        return $this->vendas()->where('pago', true);
+    }
+    
+    public function vendasFinalizadas() {
+        return $this->vendas()->where('enviado', true);
+    }
 }

@@ -20,13 +20,26 @@ class ClienteController extends Controller {
         return view('frente.cliente.dashboard', $models);
     }
     
-    public function getPedidos($id = null) {
+    public function getPedidos(Request $req, $id = null) {
         if ($id == null) {
-            $models['tipoVisao'] = 'Todos';
-            $models['pedidos'] = \Auth::user()->vendas;
+            if ($req->has('status') == false) {
+                $models['tipoVisao'] = 'Todos';
+                $models['pedidos'] = \Auth::user()->vendas;
+            } else {
+                if ($req->status == 'nao-pagos') {
+                    $models['tipoVisao'] = 'Não Pagos';
+                    $models['pedidos'] = \Auth::user()->vendasNaoPagas;
+                } else if ($req->status == 'pagos') {
+                    $models['tipoVisao'] = 'Pagos';
+                    $models['pedidos'] = \Auth::user()->vendasPagas;
+                } else if ($req->status == 'finalizados') {
+                    $models['tipoVisao'] = 'Finalizados/Enviados';
+                    $models['pedidos'] = \Auth::user()->vendasFinalizadas;
+                }
+            }
             return view('frente.cliente.pedidos-listar', $models);
         }
-        
+
         $models['pedido'] = Venda::find($id);
         return view('frente.cliente.pedido-detalhes', $models);
     }

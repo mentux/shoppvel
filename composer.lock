@@ -578,12 +578,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/michaeldouglas/laravel-pagseguro.git",
-                "reference": "eacd8b240fccde9d261dfb8d8fbaf002225f0108"
+                "reference": "e9f27e3f7d0bd0bbcfeb48758d97b6906d73b99f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/michaeldouglas/laravel-pagseguro/zipball/eacd8b240fccde9d261dfb8d8fbaf002225f0108",
-                "reference": "eacd8b240fccde9d261dfb8d8fbaf002225f0108",
+                "url": "https://api.github.com/repos/michaeldouglas/laravel-pagseguro/zipball/e9f27e3f7d0bd0bbcfeb48758d97b6906d73b99f",
+                "reference": "e9f27e3f7d0bd0bbcfeb48758d97b6906d73b99f",
                 "shasum": ""
             },
             "require": {
@@ -624,7 +624,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2016-04-05 20:13:55"
+            "time": "2016-05-07 19:36:10"
         },
         {
             "name": "monolog/monolog",
@@ -2697,16 +2697,16 @@
         },
         {
             "name": "sebastian/environment",
-            "version": "1.3.5",
+            "version": "1.3.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/environment.git",
-                "reference": "dc7a29032cf72b54f36dac15a1ca5b3a1b6029bf"
+                "reference": "2292b116f43c272ff4328083096114f84ea46a56"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/environment/zipball/dc7a29032cf72b54f36dac15a1ca5b3a1b6029bf",
-                "reference": "dc7a29032cf72b54f36dac15a1ca5b3a1b6029bf",
+                "url": "https://api.github.com/repos/sebastianbergmann/environment/zipball/2292b116f43c272ff4328083096114f84ea46a56",
+                "reference": "2292b116f43c272ff4328083096114f84ea46a56",
                 "shasum": ""
             },
             "require": {
@@ -2743,7 +2743,7 @@
                 "environment",
                 "hhvm"
             ],
-            "time": "2016-02-26 18:40:46"
+            "time": "2016-05-04 07:59:13"
         },
         {
             "name": "sebastian/exporter",
