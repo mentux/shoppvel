@@ -68,7 +68,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="{{route('cliente.perfil')}}">
                                 Perfil
                             </a>
                         </li>

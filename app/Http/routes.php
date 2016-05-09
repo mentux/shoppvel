@@ -92,6 +92,10 @@ Route::group(['middleware' => ['web']], function () {
             'as' => 'cliente.pedidos',
             'uses' => 'ClienteController@getPedidos'
         ]);
+        Route::get('cliente/perfil', [
+            'as' => 'cliente.perfil',
+            'uses' => 'ClienteController@getPerfil'
+        ]);
     });
 });
 

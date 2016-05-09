@@ -20,6 +20,10 @@ class ClienteController extends Controller {
         return view('frente.cliente.dashboard', $models);
     }
     
+    public function getPerfil() {
+        return view('frente.cliente.perfil');
+    }
+    
     public function getPedidos(Request $req, $id = null) {
         if ($id == null) {
             if ($req->has('status') == false) {
