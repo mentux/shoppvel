@@ -10,6 +10,8 @@ use Shoppvel\Models\Venda;
 use Shoppvel\Models\VendaItem ;
 use Illuminate\Support\Facades\Auth;
 
+use Illuminate\Support\Facades\DB;
+
 class ClienteController extends Controller {
 
     public function getDashboard() {
@@ -46,5 +48,23 @@ class ClienteController extends Controller {
 
         $models['pedido'] = Venda::find($id);
         return view('frente.cliente.pedido-detalhes', $models);
+    }
+    
+    public function postAvaliar(Request $req, $itemVendaId) {
+        $itemVenda = VendaItem::find($itemVendaId);
+        $produto = $itemVenda->produto;
+        
+        DB::initTransaction();
+
+        $itemVenda->avaliado = true;
+        $itemVenda->save();
+        
+        $produto->increment('avaliacao_qtde');
+        $produto->increment('avaliacao_total', $req->avaliacao);
+        $produto->save();
+        
+        DB::commit();
+        
+        return back()->with('mensagens-sucesso', 'Produto avaliado com sucesso!');
     }
 }

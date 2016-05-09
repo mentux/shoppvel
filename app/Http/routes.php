@@ -96,6 +96,10 @@ Route::group(['middleware' => ['web']], function () {
             'as' => 'cliente.perfil',
             'uses' => 'ClienteController@getPerfil'
         ]);
+        Route::any('cliente/avaliar/{id}', [
+            'as' => 'cliente.avaliar',
+            'uses' => 'ClienteController@postAvaliar'
+        ]);
     });
 });
 
