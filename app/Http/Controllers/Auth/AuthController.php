@@ -68,10 +68,16 @@ class AuthController extends Controller
      */
     protected function create(array $data)
     {
+        // retira pontos e traços do cpf pois eh melhor 
+        // gravar sem formatação para garantir padronização dos dados
+        $cpf = $data['cpf'];
+        $cpf = str_replace('.', '', $cpf);
+        $cpf = str_replace('-', '', $cpf);
+        
         return User::create([
             'name' => $data['new_name'],
             'email' => $data['new_email'],
-            'cpf' => $data['cpf'],
+            'cpf' => $cpf,
             'endereco' => $data['endereco'],
             'password' => bcrypt($data['new_password']),
         ]);
