@@ -43,6 +43,11 @@
                     <h3>Cliente</h3>
                     <ul>
                         <li>
+                            <a href="{{route('cliente.dashboard')}}">
+                                Painel de controle
+                            </a>
+                        </li>
+                        <li>
                             <a href="{{route('cliente.pedidos')}}">
                                 Todos os pedidos
                             </a>

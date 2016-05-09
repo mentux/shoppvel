@@ -13,10 +13,10 @@ use Illuminate\Support\Facades\Auth;
 class ClienteController extends Controller {
 
     public function getDashboard() {
-        $models['qtdePedidos']['total'] = 10;
-        $models['qtdePedidos']['pendentes-pagamento'] = 2;
-        $models['qtdePedidos']['pagos'] = 8;
-        $models['qtdePedidos']['finalizados'] = 7;
+        $models['qtdePedidos']['total'] = Auth::user()->vendas()->count();
+        $models['qtdePedidos']['pendentes-pagamento'] = Auth::user()->vendasNaoPagas()->count();
+        $models['qtdePedidos']['pagos'] = Auth::user()->vendasPagas()->count();
+        $models['qtdePedidos']['finalizados'] = Auth::user()->vendasFinalizadas()->count();
         return view('frente.cliente.dashboard', $models);
     }
     
