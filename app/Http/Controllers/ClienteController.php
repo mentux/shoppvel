@@ -54,7 +54,7 @@ class ClienteController extends Controller {
         $itemVenda = VendaItem::find($itemVendaId);
         $produto = $itemVenda->produto;
         
-        DB::initTransaction();
+        DB::beginTransaction();
 
         $itemVenda->avaliado = true;
         $itemVenda->save();
