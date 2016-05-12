@@ -23,7 +23,7 @@ class AlterItemVendaAddAvaliado extends Migration {
      */
     public function down() {
         Schema::table('itens_venda', function ($table) {
-            $table->dropColumn('avaiado');
+            $table->dropColumn('avaliado');
         });
     }
 
