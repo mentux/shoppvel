@@ -523,4 +523,5 @@ return array(
     'TestCase' => $baseDir . '/tests/TestCase.php',
     'Text_Template' => $vendorDir . '/phpunit/php-text-template/src/Template.php',
     'UserAlterTable' => $baseDir . '/database/migrations/2016_04_23_191748_userAlterTable.php',
+    'UserSeeder' => $baseDir . '/database/seeds/UserSeeder.php',
 );

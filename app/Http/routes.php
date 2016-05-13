@@ -82,12 +82,12 @@ Route::group(['middleware' => ['web']], function () {
             'as' => 'carrinho.finalizar-compra',
             'uses' => 'CarrinhoController@getFinalizarCompra'
         ]);
-        
+
         Route::get('cliente/dashboard', [
             'as' => 'cliente.dashboard',
             'uses' => 'ClienteController@getDashboard'
         ]);
-        
+
         Route::get('cliente/pedidos/{id?}', [
             'as' => 'cliente.pedidos',
             'uses' => 'ClienteController@getPedidos'
@@ -99,6 +99,19 @@ Route::group(['middleware' => ['web']], function () {
         Route::any('cliente/avaliar/{id}', [
             'as' => 'cliente.avaliar',
             'uses' => 'ClienteController@postAvaliar'
+        ]);
+
+        Route::get('admin', [
+            'as' => 'admin',
+            'uses' => 'AdminController@getDashboard'
+        ]);
+        Route::get('admin/dashboard', [
+            'as' => 'admin.dashboard',
+            'uses' => 'AdminController@getDashboard'
+        ]);
+        Route::get('admin/pedidos/{id?}', [
+            'as' => 'admin.pedidos',
+            'uses' => 'AdminController@getPedidos'
         ]);
     });
 });
