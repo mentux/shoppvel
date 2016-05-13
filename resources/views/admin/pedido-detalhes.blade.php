@@ -1,4 +1,4 @@
-@extends('layouts.cliente')
+@extends('layouts.admin')
 
 @section('conteudo')
 <h2>Pedido - {{$pedido->data_venda->format('d/m/Y H:i')}} </h2>
@@ -6,6 +6,7 @@
     <thead>
         <tr>
             <th>Data</th>
+            <th class="text-right">Cliente</th>
             <th class="text-right">Valor</th>
             <th class="text-right">Método de Pagamento</th>
             <th class="text-right">Status no Pagseguro</th>
@@ -20,6 +21,9 @@
                 <a href="{{route('cliente.pedidos', $pedido->id)}}">
                     {{$pedido->data_venda->format('d/m/Y H:i')}}
                 </a>
+            </td>
+            <td>
+                {{$pedido->user->name}}
             </td>
             <td>
                 {{number_format($pedido->valor_venda, 2, ',', '.')}}
@@ -58,7 +62,7 @@
             <th class="text-right">Quantidade</th>
             <th class="text-right">Valor Unitário</th>
             <th class="text-right">Total do item</th>
-            <th class="text-right">Avaliar</th>
+            <th class="text-right">Avaliação</th>
         </tr>
     </thead>
     <tbody>
@@ -82,14 +86,7 @@
                 {{number_format($item->produto->preco_venda * $item->qtde, 2, ',', '.')}}
             </td>
             <td class="col-sm-2 text-right">
-                @if($item->avaliado)
-                    {{ number_format($item->produto->avaliacao_total / $item->produto->avaliacao_qtde, 2) }}
-                @else
-                    {{ Form::open (['route' => ['cliente.avaliar', $item->id]]) }}
-                        {{ Form::text('avaliacao', null, ['class'=>'col-sm-12']) }}
-                        {{ Form::submit('Avaliar', ['class'=>'btn btn-primary btn-sm col-sm-12']) }}
-                    {{ Form::close() }}
-                @endif
+                {{ number_format($item->produto->avaliacao_total / $item->produto->avaliacao_qtde, 2) }}
             </td>
         </tr>
         @endforeach

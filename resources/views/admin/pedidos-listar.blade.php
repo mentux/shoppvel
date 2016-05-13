@@ -1,4 +1,4 @@
-@extends('layouts.cliente')
+@extends('layouts.admin')
 
 @section('conteudo')
 <h2>Pedidos - {{$tipoVisao}} - {{$pedidos->count()}} </h2>
@@ -6,6 +6,7 @@
     <thead>
         <tr>
             <th>Data</th>
+            <th class="text-right">Cliente</th>
             <th class="text-right">Valor</th>
             <th class="text-right">Método de Pagamento</th>
             <th class="text-right">Status no Pagseguro</th>
@@ -19,9 +20,12 @@
 
         <tr>
             <td>
-                <a href="{{route('cliente.pedidos', $pedido->id)}}">
+                <a href="{{route('admin.pedidos', $pedido->id)}}">
                     {{$pedido->data_venda->format('d/m/Y H:i')}}
                 </a>
+            </td>
+            <td>
+                {{$pedido->user->name}}
             </td>
             <td>
                 {{number_format($pedido->valor_venda, 2, ',', '.')}}

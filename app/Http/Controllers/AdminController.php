@@ -30,24 +30,24 @@ class AdminController extends Controller {
         if ($id == null) {
             if ($req->has('status') == false) {
                 $models['tipoVisao'] = 'Todos';
-                $models['pedidos'] = \Auth::user()->vendas;
+                $models['pedidos'] = Venda::all();
             } else {
                 if ($req->status == 'nao-pagos') {
                     $models['tipoVisao'] = 'Não Pagos';
-                    $models['pedidos'] = \Auth::user()->vendasNaoPagas;
+                    $models['pedidos'] = Venda::naoPagas()->get();
                 } else if ($req->status == 'pagos') {
                     $models['tipoVisao'] = 'Pagos';
-                    $models['pedidos'] = \Auth::user()->vendasPagas;
+                    $models['pedidos'] = Venda::pagas()->get();
                 } else if ($req->status == 'finalizados') {
                     $models['tipoVisao'] = 'Finalizados/Enviados';
-                    $models['pedidos'] = \Auth::user()->vendasFinalizadas;
+                    $models['pedidos'] = Venda::finalizadas()->get();
                 }
             }
-            return view('frente.cliente.pedidos-listar', $models);
+            return view('admin.pedidos-listar', $models);
         }
 
         $models['pedido'] = Venda::find($id);
-        return view('frente.cliente.pedido-detalhes', $models);
+        return view('admin.pedido-detalhes', $models);
     }
     
 }
