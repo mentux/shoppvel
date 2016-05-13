@@ -11,8 +11,8 @@ use Shoppvel\User;
  * aplicação
  */
 class Venda extends Model {
-    private $pagseguro = null;
 
+    private $pagseguro = null;
     protected $dates = ['data_venda'];
 
     private function initPagSeguro() {
@@ -21,18 +21,18 @@ class Venda extends Model {
             $transaction = \PagSeguro::transaction()->get($this->pagseguro_transaction_id, $credentials);
             $this->pagseguro = $transaction->getInformation();
         }
-        
+
         return $this->pagseguro;
     }
-    
+
     public function user() {
         return $this->belongsTo(User::class);
     }
-    
+
     public function itens() {
         return $this->hasMany(VendaItem::class);
     }
-    
+
     /**
      * Veja attribute mutators na documentação do Eloquent
      * 
@@ -40,7 +40,7 @@ class Venda extends Model {
      */
     public function getStatusPagamentoAttribute() {
         $this->initPagSeguro();
-        
+
         return $this->pagseguro->getStatus()->getName();
     }
 
@@ -51,7 +51,20 @@ class Venda extends Model {
      */
     public function getMetodoPagamentoAttribute() {
         $this->initPagSeguro();
-        
+
         return $this->pagseguro->getPaymentMethod()->getTypeName();
     }
+
+    public function scopeNaoPagas($query) {
+        return $query->where('pago', false);
+    }
+
+    public function scopePagas($query) {
+        return $query->where('pago', true);
+    }
+
+    public function scopeFinalizadas($query) {
+        return $query->where('enviado', true);
+    }
+
 }
