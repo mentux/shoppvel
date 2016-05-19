@@ -58,12 +58,12 @@
                             </a>
                         </li>
                         <li>
-                            <a href="{{route('admin.pedidos', 'pagos')}}">
+                            <a href="{{route('admin.pedidos', '?status=pagos')}}">
                                 Pedidos pagos
                             </a>
                         </li>
                         <li>
-                            <a href="{{route('admin.pedidos', 'finalizados')}}">
+                            <a href="{{route('admin.pedidos', '?status=finalizados')}}">
                                 Pedidos finalizados
                             </a>
                         </li>
