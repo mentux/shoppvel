@@ -75,8 +75,10 @@ class CarrinhoController extends Controller {
 
             if ($user->cpf) {
                 $dadosCompra['sender']['documents'] = [
-                    'number' => $user->cpf,
-                    'type' => 'cpf'
+                    [
+                        'number' => $user->cpf,
+                        'type' => 'cpf'
+                    ]
                 ];
             }
 
