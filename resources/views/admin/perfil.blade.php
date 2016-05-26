@@ -1,7 +1,7 @@
 @extends('layouts.cliente')
 
 @section('conteudo')
-<h2>Perfil - {{Auth::user()->name}}</h3>
+<h2>Perfil - {{Auth::user()->name}} - {{Auth::user()->role}}</h3>
 
 <div class="container">
     <div class="row">

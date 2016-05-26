@@ -113,6 +113,10 @@ Route::group(['middleware' => ['web']], function () {
             'as' => 'admin.pedidos',
             'uses' => 'AdminController@getPedidos'
         ]);
+        Route::get('admin/perfil', [
+            'as' => 'admin.perfil',
+            'uses' => 'AdminController@getPerfil'
+        ]);
     });
 });
 
