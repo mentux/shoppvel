@@ -15,8 +15,7 @@
         </tr>
     </thead>
     <tbody>
-        @foreach($pedidos as $pedido)
-
+        @forelse($pedidos as $pedido)
         <tr>
             <td>
                 <a href="{{route('cliente.pedidos', $pedido->id)}}">
@@ -48,7 +47,13 @@
                 {{$pedido->pagseguro_transaction_id}}
             </td>
         </tr>
-        @endforeach
+        @empty
+        <tr class="info">
+            <td colspan="8" >
+                Nenhum pedido para o status solicitado !
+            </td>
+        </tr>
+        @endforelse
     </tbody>
 </table>
 @stop
