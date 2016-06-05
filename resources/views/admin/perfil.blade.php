@@ -1,4 +1,4 @@
-@extends('layouts.cliente')
+@extends('layouts.admin')
 
 @section('conteudo')
 <h2>Perfil - {{Auth::user()->name}} - {{Auth::user()->role}}</h3>
