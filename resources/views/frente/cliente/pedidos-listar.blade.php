@@ -32,10 +32,15 @@
                 {{$pedido->status_pagamento}}
             </td>
             <td class="text-right small">
-                {!! $pedido->pago && $pedido->enviado == FALSE 
-                    ? '<span class="text-primary">PRONTO PARA ENVIAR</span>' 
-                    : '<b class="text-warning">Aguardando atualização de status de pagamento</b>'
-                !!}
+                @if ($pedido->pago)
+                    @if ($pedido->enviado)
+                        <span class="text-success">FINALIZADO</span>
+                    @else
+                        <span class="text-warning">PRONTO PARA ENVIAR</span>
+                    @endif
+                @else
+                    <b class="text-warning">Aguardando atualização de status de pagamento</b>
+                @endif
             </td>
             <td class="text-right small">
                 {!! $pedido->enviado 
