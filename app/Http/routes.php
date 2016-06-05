@@ -28,95 +28,103 @@ Route::post('/pagseguro/notification', [
     'as' => 'pagseguro.notification',
 ]);
 
-    Route::auth();
+Route::auth();
 
-    Route::get('/', 'FrenteLojaController@getIndex');
+Route::get('/', 'FrenteLojaController@getIndex');
 
-    Route::get('sobre', [
-        'as' => 'sobre',
-        'uses' => 'FrenteLojaController@getSobre'
-    ]);
-    Route::get('pagseguro/checkout', [
-        'as' => 'pagseguro.checkout',
-        'uses' => 'PedidoController@postCheckout'
-    ]);
-    Route::get('categoria/{id?}', [
-        'as' => 'categoria.listar',
-        'uses' => 'CategoriaController@getCategoria'
-    ]);
-    /*
-     * ATENÇÃO para esta rota, ela deve estar antes de produto/{id}
-     * para funcionar
-     */
-    Route::any('produto/buscar', [
-        'as' => 'produto.buscar',
-        'uses' => 'ProdutoController@getBuscar'
-    ]);
-    Route::get('produto/{id}', [
-        'as' => 'produto.detalhes',
-        'uses' => 'ProdutoController@getProdutoDetalhes'
-    ]);
-    Route::get('imagem/arquivo/{nome}', [
-        'as' => 'imagem.file',
-        'uses' => 'ImagemController@getImagemFile'
+Route::get('sobre', [
+    'as' => 'sobre',
+    'uses' => 'FrenteLojaController@getSobre'
+]);
+Route::get('pagseguro/checkout', [
+    'as' => 'pagseguro.checkout',
+    'uses' => 'PedidoController@postCheckout'
+]);
+Route::get('categoria/{id?}', [
+    'as' => 'categoria.listar',
+    'uses' => 'CategoriaController@getCategoria'
+]);
+/*
+ * ATENÇÃO para esta rota, ela deve estar antes de produto/{id}
+ * para funcionar
+ */
+Route::any('produto/buscar', [
+    'as' => 'produto.buscar',
+    'uses' => 'ProdutoController@getBuscar'
+]);
+Route::get('produto/{id}', [
+    'as' => 'produto.detalhes',
+    'uses' => 'ProdutoController@getProdutoDetalhes'
+]);
+Route::get('imagem/arquivo/{nome}', [
+    'as' => 'imagem.file',
+    'uses' => 'ImagemController@getImagemFile'
+]);
+
+Route::any('carrinho/adicionar/{id}', [
+    'as' => 'carrinho.adicionar',
+    'uses' => 'CarrinhoController@anyAdicionar'
+]);
+
+Route::get('carrinho', [
+    'as' => 'carrinho.listar',
+    'uses' => 'CarrinhoController@getListar'
+]);
+
+Route::get('carrinho/esvaziar', [
+    'as' => 'carrinho.esvaziar',
+    'uses' => 'CarrinhoController@getEsvaziar'
+]);
+
+Route::group(['middleware' => ['auth']], function () {
+    Route::get('carrinho/finalizar-compra', [
+        'as' => 'carrinho.finalizar-compra',
+        'uses' => 'CarrinhoController@getFinalizarCompra'
     ]);
 
-    Route::any('carrinho/adicionar/{id}', [
-        'as' => 'carrinho.adicionar',
-        'uses' => 'CarrinhoController@anyAdicionar'
+    Route::get('cliente/dashboard', [
+        'as' => 'cliente.dashboard',
+        'uses' => 'ClienteController@getDashboard'
     ]);
 
-    Route::get('carrinho', [
-        'as' => 'carrinho.listar',
-        'uses' => 'CarrinhoController@getListar'
+    Route::get('cliente/pedidos/{id?}', [
+        'as' => 'cliente.pedidos',
+        'uses' => 'ClienteController@getPedidos'
+    ]);
+    Route::get('cliente/perfil', [
+        'as' => 'cliente.perfil',
+        'uses' => 'ClienteController@getPerfil'
+    ]);
+    Route::any('cliente/avaliar/{id}', [
+        'as' => 'cliente.avaliar',
+        'uses' => 'ClienteController@postAvaliar'
     ]);
 
-    Route::get('carrinho/esvaziar', [
-        'as' => 'carrinho.esvaziar',
-        'uses' => 'CarrinhoController@getEsvaziar'
+    Route::get('admin', [
+        'as' => 'admin',
+        'uses' => 'AdminController@getDashboard'
     ]);
-
-    Route::group(['middleware' => ['auth']], function () {
-        Route::get('carrinho/finalizar-compra', [
-            'as' => 'carrinho.finalizar-compra',
-            'uses' => 'CarrinhoController@getFinalizarCompra'
-        ]);
-
-        Route::get('cliente/dashboard', [
-            'as' => 'cliente.dashboard',
-            'uses' => 'ClienteController@getDashboard'
-        ]);
-
-        Route::get('cliente/pedidos/{id?}', [
-            'as' => 'cliente.pedidos',
-            'uses' => 'ClienteController@getPedidos'
-        ]);
-        Route::get('cliente/perfil', [
-            'as' => 'cliente.perfil',
-            'uses' => 'ClienteController@getPerfil'
-        ]);
-        Route::any('cliente/avaliar/{id}', [
-            'as' => 'cliente.avaliar',
-            'uses' => 'ClienteController@postAvaliar'
-        ]);
-
-        Route::get('admin', [
-            'as' => 'admin',
-            'uses' => 'AdminController@getDashboard'
-        ]);
-        Route::get('admin/dashboard', [
-            'as' => 'admin.dashboard',
-            'uses' => 'AdminController@getDashboard'
-        ]);
-        Route::get('admin/pedidos/{id?}', [
-            'as' => 'admin.pedidos',
-            'uses' => 'AdminController@getPedidos'
-        ]);
-        Route::get('admin/perfil', [
-            'as' => 'admin.perfil',
-            'uses' => 'AdminController@getPerfil'
-        ]);
-    });
+    Route::get('admin/dashboard', [
+        'as' => 'admin.dashboard',
+        'uses' => 'AdminController@getDashboard'
+    ]);
+    Route::put('admin/pedido/pago/{id}', [
+        'as' => 'admin.pedido.pago',
+        'uses' => 'AdminController@putPedidoPago'
+    ]);
+    Route::put('admin/pedido/finalizado/{id}', [
+        'as' => 'admin.pedido.finalizado',
+        'uses' => 'AdminController@putPedidoFinalizado'
+    ]);
+    Route::get('admin/pedidos/{id?}', [
+        'as' => 'admin.pedidos',
+        'uses' => 'AdminController@getPedidos'
+    ]);
+    Route::get('admin/perfil', [
+        'as' => 'admin.perfil',
+        'uses' => 'AdminController@getPerfil'
+    ]);
+});
 
 
 //Route::get('/home', 'HomeController@index');

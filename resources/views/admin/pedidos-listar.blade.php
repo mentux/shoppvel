@@ -13,6 +13,7 @@
             <th class="text-right">Status Local</th>
             <th class="text-right">Enviado / Finalizado</th>
             <th class="text-right">Id no Pagseguro</th>
+            <th class="text-right"></th>
         </tr>
     </thead>
     <tbody>
@@ -36,10 +37,15 @@
                 {{$pedido->status_pagamento}}
             </td>
             <td class="text-right small">
-                {!! $pedido->pago && $pedido->enviado == FALSE 
-                    ? '<span class="text-primary">PRONTO PARA ENVIAR</span>' 
-                    : '<b class="text-warning">Aguardando atualização de status de pagamento</b>'
-                !!}
+                @if ($pedido->pago)
+                    @if ($pedido->enviado)
+                        <span class="text-success">FINALIZADO</span>
+                    @else
+                        <span class="text-warning">PRONTO PARA ENVIAR</span>
+                    @endif
+                @else
+                    <b class="text-warning">Aguardando atualização de status de pagamento</b>
+                @endif
             </td>
             <td class="text-right small">
                 {!! $pedido->enviado 
@@ -49,6 +55,18 @@
             </td>
             <td class="text-right text-muted small">
                 {{$pedido->pagseguro_transaction_id}}
+            </td>
+            <td class="text-right small">
+                @if ($pedido->pago == false)
+                    {{ Form::open (['route' => ['admin.pedido.pago', $pedido->id], 'method' => 'PUT']) }}
+                        {{ Form::submit('Baixa de Pagamento', ['class'=>'btn btn-success btn-sm col-sm-12']) }}
+                    {{ Form::close() }}
+                @endif
+                @if ($pedido->pago && $pedido->enviado == false)
+                    {{ Form::open (['route' => ['admin.pedido.finalizado', $pedido->id], 'method' => 'PUT']) }}
+                        {{ Form::submit('Marcar Finalizado/Enviado', ['class'=>'btn btn-warning btn-sm col-sm-12']) }}
+                    {{ Form::close() }}
+                @endif
             </td>
         </tr>
         @empty

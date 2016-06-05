@@ -50,4 +50,29 @@ class AdminController extends Controller {
         return view('admin.pedido-detalhes', $models);
     }
     
+    public function putPedidoPago(Request $request, $id) {
+        $pedido = Venda::find($id);
+        
+        if ($pedido == null) {
+            return back()->withErrors('Pedido não encontrado!');
+        }
+        
+        $pedido->pago = TRUE;
+        $pedido->save();
+        
+        return redirect()->route('admin.pedidos', '?status=pagos')->with('mensagens-sucesso', 'Pedido atualizado');
+    }
+    
+    public function putPedidoFinalizado(Request $request, $id) {
+        $pedido = Venda::find($id);
+        
+        if ($pedido == null) {
+            return back()->withErrors('Pedido não encontrado!');
+        }
+        
+        $pedido->enviado = TRUE;
+        $pedido->save();
+        
+        return redirect()->route('admin.pedidos', '?status=finalizados')->with('mensagens-sucesso', 'Pedido finalizado');
+    }
 }
