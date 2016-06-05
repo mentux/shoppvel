@@ -28,7 +28,6 @@ Route::post('/pagseguro/notification', [
     'as' => 'pagseguro.notification',
 ]);
 
-Route::group(['middleware' => ['web']], function () {
     Route::auth();
 
     Route::get('/', 'FrenteLojaController@getIndex');
@@ -118,7 +117,6 @@ Route::group(['middleware' => ['web']], function () {
             'uses' => 'AdminController@getPerfil'
         ]);
     });
-});
 
 
 //Route::get('/home', 'HomeController@index');
